@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- bootstrap  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  <title>팀운보다 문제는 내손!: 캐리미</title>
+  <style>
+    #logo {
+      width: 20%;
+    }
+
+    #header {
+      background-color: #ff9e14;
+    }
+
+    .nav-link {
+      margin-left: 70px;
+      margin-right: 70px;
+    }
+
+    #carousel {
+      margin-left: 150px;
+      margin-top: 50px;
+      width: 80%;
+    }
+
+    .game div ul {
+      display: flex;
+      justify-content: center;
+    }
+
+    .game div ul li {
+      align-items: center;
+    }
+
+    .game div ul li img {
+      width: 50%;
+    }
+    .footer{
+      background-color:black;
+      position:fixed; 
+  left:0px; 
+  bottom:0px; 
+  height:60px; 
+  width:100%; 
+    }
+  </style>
+</head>
+
+<body>
+  {% load static %}
+  <div id="header">
+
+
+
+
+    <br>
+    <div style="margin-right: 100px; text-align: right;">
+      {% if user.is_active == False%}
+      <a style="color: aliceblue; font: bold;" href="{% url 'login' %}">로그인</a>
+      {% endif %}
+      {% if user.is_active == True %}
+      <br>
+      <a style="color: aliceblue; " href="">마이페이지</a>
+      <a style="color: aliceblue;" href="{% url 'logout' %}">로그아웃</a>
+      <p>{{nickname}}님 반갑습니다</p>
+      {% endif %}
+    </div>
+    <br>
+  </div>
+  <div>
+    {% load static %}
+    <div style="margin-left: 150px;">
+      <form class="form-inline ">
+        <a href="{% url 'home' %}"><img style="width: 60%" id="logo" src="{% static 'images/carry_me_logo.png' %}" alt=""></a>
+        <input style="width: 40%;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="text-align: left;" class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a style="margin-left: 300px;" class="nav-link" href="#">About Us <span
+                  class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">강사 소개</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                강의
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              
+                <a class="dropdown-item" href="#">배틀그라운드</a>
+                <a class="dropdown-item" href="#">오버워치</a>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'QnA' %}">Q&A</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div style="margin-top: 50px; float: right; margin-right: 280px;">
+      <button><a style="text-decoration: none; color: black;" href="{% url 'question' %}">글쓰기</a></button>
+    </div>
+    <div style="margin-top: 100px; text-align: center;display: flex;justify-content: center;" class="table">
+      <table style="width: 1000px;">
+        <thead id="title">
+            <tr >
+                <th>ID</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in question %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td><a href="{% url 'detail' i.id %}">{{i.title}}</a></td>
+                <td>{{i.username}}</td>
+                <td>{{i.created_at}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    
+  <div style="margin-top: 50px;" class="footer">
+    <div class="container">
+        <div class="row padding_top_50">
+            <div style="margin-top: 30px; margin-bottom: 30px;" class="col text-left">
+                <img style="width: 30%;" src="{% static 'images/carry_me_logo_white.png' %}">
+            </div>
+            <div style="margin-top: 30px;" class="col text-right">
+                <a class="float-right" href="" target="_blank">
+                    <img src="http://www.10wonders.com/img/assets/footer/youtube.svg">
+                </a>
+                <a class="float-right margin_right_5" href="" target="_blank">
+                    <img src="http://www.10wonders.com/img/assets/footer/facebook.svg">
+                </a>
+                <a class="float-right margin_right_5" href="" target="_blank">
+                    <img src="http://www.10wonders.com/img/assets/footer/instagram.svg">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap  -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+   </script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>    
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+    <title>강사소개</title>
+
+    <style>
+
+         #teacherlol{
+            height:700px;
+            
+         }
+
+         #teacherbattle{
+           height:300px;
+         }  
+
+         #teacherover{
+             height:500px;
+         }
+
+         .teacher-explain{
+            font-family:'Do Hyeon', sans-serif;
+            color:black;
+            font-weight: 600;
+         }
+
+         .title{
+             text-align:center;
+             background-color:#ff9e14;
+             color:white;
+             height:55px;
+         }
+
+        .teacher-image{
+            margin-top:25px;
+            width:35%;
+            float:left;
+            text-align:center;
+           
+        }        
+
+        .teacher-explain{
+            width:65%;
+            float:right;
+            text-align:center;
+        } 
+
+         #logo {
+      width: 20%;
+    }
+
+    #header {
+      background-color: #ff9e14;
+    }
+
+    .nav-link {
+      margin-left: 70px;
+      margin-right: 70px;
+    }
+
+    #carousel {
+      margin-left: 150px;
+      margin-top: 50px;
+      width: 80%;
+    }
+
+    .game div ul {
+      display: flex;
+      justify-content: center;
+    }
+
+    .game div ul li {
+      align-items: center;
+    }
+
+    .game div ul li img {
+      width: 50%;
+    }
+    .footer{
+      background-color:black;
+      position: fixed;
+
+      left: 0;
+  
+      bottom: 0;
+  
+      width: 100%;
+    }
+    </style>
+</head>
+<body>
+
+        <div id="header">
+                <div style="margin-right: 100px; text-align: right;">
+                    {% if user.is_active == False%}
+                      <a style="color: aliceblue;" href="{% url 'login' %}">로그인</a>
+                    {% endif %}
+                    {% if user.is_active == True %}
+                      <br>
+                      <a style="color: aliceblue;" href="{% url 'mypage'  %}">마이페이지</a>
+                      <a style="color: aliceblue;" href="{% url 'logout' %}">로그아웃</a>
+                      <p>{{nickname}}님 반갑습니다</p>
+                    {% endif %}
+                </div>
+                <br>
+            </div>
+            <div>
+                {% load static %}
+                <div style="margin-left: 150px;">
+                    <form class="form-inline ">
+                        <a href="{% url 'home' %}"><img style="width: 60%" id="logo" src="{% static 'images/carry_me_logo.png' %}" alt=""></a>
+                        <input style="width: 40%;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        
+                    </form>
+                </div>
+                <div>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div style="text-align: left;" class="collapse navbar-collapse" id="navbarNavDropdown">
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a style="margin-left: 300px;" class="nav-link" href="#">About Us <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                              <a  class="nav-link" href="#">강사 소개</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  강의
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="#">리그오브레전드</a>
+                                  <a class="dropdown-item" href="#">배틀그라운드</a>
+                                  <a class="dropdown-item" href="#">오버워치</a>
+                                </div>
+                              </li> 
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url 'QnA' %}">Q&A</a>
+                            </li>
+        
+                          </ul>
+                        </div>
+                      </nav>
+                </div>
+
+
+    <br>
+    <br>
+    <br>
+<div class="teacher-top", style="font:bond; text-align:center; color:orange; font-family:Georgia">
+    <h1>Carryme의 강사를 소개합니다</h1>
+</div> 
+
+<br>
+<br>
+<div class="title">
+    <h1>League Of Legends</h1>
+</div>
+
+
+<div id="teacherlol">
+    <div id="lol"><br>
+        <div class="teacher-image">
+        <img src='https://w.namu.la/s/7a5d83c24fa99578cb8a2e08c2012a9844280c940a4c87ae596b516cf624df33243ebb44186f02c9420f42965a421c91e537fad1313fed6a5d2677eb9e9865350bc24b703768b41522db730fecb2d29031bd92c3baf47985ee48138d3c5e721c8aa7b94904414fa0f9c2705e82a2903a'
+        alt=강사이미지 style="height:400px; width:auto; margin-left:20px; margin-top:60px; "></div>
+
+    <div class="teacher-explain">
+        강사이름 : 매드라이프(MadLife)<br>
+        본명 : 홍민기<br>
+        포지션 : 서포터(Supporter)<br>
+        소속 : SandBox<br>
+        소속팀 : Cj Entus Prost(2011~2014)<br>
+                 &emsp;&emsp;&emsp; Cj Entus(2014~2016)<br>
+                 &emsp;&emsp;&emsp; Gold Coin United(2016~2017)<br>
+        우승경력 : LOL 인비테이셔널 우승 <br>
+                   &emsp;&emsp;&emsp; Azubu the Champions Summer 2012 우승 <br>
+                   &emsp;&emsp;&emsp; 2013 리그오브레전드 올스타전 우승<br>
+                   &emsp;&emsp;&emsp; 2014 리그오브레전드 올스타전 우승<br>
+                   &emsp;&emsp;&emsp; 2015 리그오브레전드 올스타전 우승<br>
+                   &emsp;&emsp;&emsp; 2014 빅파일 NLB Spring 우승<br>
+                   &emsp;&emsp;&emsp; 2017 CS NA Spring 우승<br>
+                   &emsp;&emsp;&emsp; 2017 CS NA Summer 우승<br>
+                   &emsp;&emsp;&emsp; 2019 리그오브레전드 올스타전 우승<br>
+                   &emsp;&emsp;&emsp; 2011 인벤 올스타 토너먼트 2011 준우승<br>
+                   &emsp;&emsp;&emsp; Azubu the Champions Spring 2012 준우승<br>
+                   &emsp;&emsp;&emsp; 리그오브레전드시즌2 월드 챔프언쉽 준우승<br>
+                   &emsp;&emsp;&emsp; OLYMPUS Champions Winter 2012-2013 준우승<br>
+                   &emsp;&emsp;&emsp; IEM Season VII World Championship 준우승<br>
+                   &emsp;&emsp;&emsp; IEM Season VIII Singapore 준우승<br>
+                   &emsp;&emsp;&emsp; NAVER 2015 LoL KeSPA Cup<br>
+                   &emsp;&emsp;&emsp; 2016 리그 오브 레전드 올스타전 준우승<br>
+
+    </div>    
+    </div>
+</div>
+
+
+
+<div class="title">
+    <h1>Battle Ground</h1>
+</div>
+
+
+<div style="margin-bottom: 50px;" id="teacherbattle">
+    <div id="battle"><br>
+        <div class="teacher-image">
+        <img src='https://ww.namu.la/s/455429fb668aa8e1762eb6a2fb495a6be03efedf43aa801ea945604c3ca460422faa5e33f5288a8798e2dfc3239bef7488dd565ef6967c2b34dcb350c8db7f207d64e6a44c02f003f1054a338de7277e82b63dfd5d537a4a5419866225280be183838664c441e59c0b51c7dda1564fd8'
+        alt=강사이미지 style="width:40%; margin-left:20px;"></div><br>
+        <div class="teacher-explain", style="margin-top:25px;">
+        강사이름 : 뜨뜨뜨뜨<br>
+        본명 : 석주형<br>
+        소속팀 : Anarchy<br> 
+        현 : 아프리가BJ<br>
+        유튜브 구독자 : 1,240,000명<br>
+        유튜브 조회수 : 348,119,049회<br>    
+        </div>
+
+    </div>
+</div>
+
+
+<div class="title">
+    <h1>OverWatch</h1>
+</div>
+
+
+<div id="teacherover">
+    <div id="over">
+        <div class="teacher-image">
+        <img src='https://ww.namu.la/s/39c08cc34fef33f2e385204165df4321a89457412d96987094e799ec714d8395f69b1efa4074133a11f7300afb946d03f84bac1465faf2be87cb52a0358c52d8f1373680d269b4e0c372bc4c935a3f6cd09141415fe6c9ce050d0e32b33fb21d'
+        alt=강사이미지 style="height:400px; width:300px; margin-left:20px; margin-top:10px;"></div><br>
+        <div class="teacher-explain">
+        강사이름 : 준바(ZUNBA)<br>
+        본명 : 김준혁<br>
+        포지션 : TANK<br>
+        소속팀 : CONBOX T6(2016)<br>
+        &emsp;&emsp;&emsp; Lunatic-Hai(2017)<br>
+        &emsp;&emsp;&emsp; 서울 다이너스티(2017~2019)<br>
+        경쟁전 점수 : 시즌1 93점(세계1위)<br>
+        &emsp;&emsp;&emsp; 시즌2 4534점(세계14위)<br>
+        &emsp;&emsp;&emsp; 시즌3 4524점<br>
+        &emsp;&emsp;&emsp; 시즌4 4700점<br>
+        &emsp;&emsp;&emsp; 시즌5 4593점<br>    
+        수상경력 : kt GiGA LEGENDS MATCH OVERWATCH BJ리그 3위<br>
+        &emsp;&emsp;&emsp; 2016년 오버워치 월드컵 우승<br>
+        &emsp;&emsp;&emsp; 2017년 오버워치 HOT6 APEX 시즌2 우승<br>
+        &emsp;&emsp;&emsp; 2017년 오버워치 HOT6 APEX 시즌3 우승<br>
+        &emsp;&emsp;&emsp; 2017년 서울컵 OGN 슈퍼매치 우승<br>
+        &emsp;&emsp;&emsp; 2017년 오버워치 월드컵 우승<br>    
+
+        </div>
+    </div>
+</div>
+</body>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- bootstrap  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  <title>팀운보다 문제는 내손!: 캐리미</title>
+  <style>
+    #logo {
+      width: 20%;
+    }
+
+    #header {
+      background-color: #ff9e14;
+    }
+
+    .nav-link {
+      margin-left: 70px;
+      margin-right: 70px;
+    }
+
+    #carousel {
+      margin-left: 150px;
+      margin-top: 50px;
+      width: 80%;
+    }
+
+    .game div ul {
+      display: flex;
+      justify-content: center;
+    }
+
+    .game div ul li {
+      align-items: center;
+    }
+
+    .game div ul li img {
+      width: 50%;
+    }
+
+    .footer {
+      background-color: black;
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      height: 60px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+
+<body>
+  {% load static %}
+  <div id="header">
+
+
+    <div style="float: right; margin-right: 280px;">
+
+    </div>
+
+    <br>
+
+    <div style="margin-right: 100px; text-align: right;">
+      {% if user.is_active == False %}
+      <a style="color: aliceblue; font: bold;" href="{% url 'login' %}">로그인</a>
+      {% endif %}
+      {% if user.is_active == True %}
+      <br>
+      <a style="color: aliceblue; " href="{% url 'mypage' %}">마이페이지</a>
+      <a style="color: aliceblue;" href="{% url 'logout' %}">로그아웃</a>
+      <p>{{nickname}}님 반갑습니다</p>
+      {% endif %}
+    </div>
+    <br>
+  </div>
+
+  {% load static %}
+  <div style="margin-left: 150px;">
+    <form class="form-inline ">
+      <a href="{% url 'home' %}"><img style="width: 60%;" id="logo" src="{% static 'images/carry_me_logo.png' %}" alt=""></a>
+      <input style="width: 40%;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div style="text-align: left;" class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a style="margin-left: 300px;" class="nav-link" href="#">About Us <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">강사 소개</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              강의
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+              <a class="dropdown-item" href="#">배틀그라운드</a>
+              <a class="dropdown-item" href="#">오버워치</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'QnA' %}">Q&A</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  
+  <div
+    style="border-radius: 5ch  ; border-style: solid; border-color :#ff9e14; height:300px ;width: 600px; margin-left: 20px; margin-top: 30px;">
+    <div style="font-size: 25px; margin : 20px;"> 유저 정보</div>
+    <div style="height: 40px;"></div>
+    <div style="margin-left: 10px;">
+      <a style="margin-left : 39px">
+        ID :
+      </a>
+      <a style="margin-left : 10px ;">{{account.user.username }}</a>
+      <div style="height: 10px;">
+
+
+
+
+      </div>
+      <div>
+        <a style="margin-left :10px ">
+          E-mail :
+        </a>
+        <a style="margin : 10px">{{account.email}}</a>
+        <div style="margin-top: 5px;">
+          <a style="margin-left :20px ">
+            별명 :
+          </a>
+          <a style="margin : 10px">{{account.nickname}}</a>
+        </div>
+
+      </div>
+
+      <div style="height: 40px;"></div>
+
+      <a style="margin-left:  230px; font-size: 20px;">" {{account.nickname}} 님 " 환영합니다!</a>
+
+
+    </div>
+    <div style="height: 30px;">
+
+    </div>
+  </div>
+
+  <div style="height: 30px;">
+
+  </div>
+
+  <div>
+    <h1>수강 내역</h1>
+  </div>
+
+
+  <img style="width: 30%;" src="{% static 'images/mypage_lol.png' %}" alt="">
+  {% if lol %}
+  {% for i in lol %}
+  <div style="margin-top: 30px; width: 400px; height: 300;">
+
+    <ul style="list-style: none;">
+      <a style="text-decoration: none; color: black;" href="{% url 'video_watching' %}">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/mad_life.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.detail}}</p>
+          </div>
+        </div>
+      </a>
+    </ul>
+  </div>
+  {% endfor %}
+  
+  {% else %}
+
+  <div class="card">
+    <img src="" alt="" />
+
+    <div class="card-body">
+
+      수강하는 수업이 없습니다.
+      <h5 class="card-title"></h5>
+      <p class="card-text"></p>
+    </div>
+  </div>
+  {% endif %}
+
+  <img style="width: 30%;" src="{% static 'images/mypage_battleground.png' %}" alt="">
+  {% if battle %}
+  {% for i in battle %}
+  <div style="margin-top: 30px; width: 400px; height: 300;">
+
+    <ul style="list-style: none;">
+      <a style="text-decoration: none; color: black;" href="{% url 'video_watching' %}">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/눈쟁이.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.detail}}</p>
+          </div>
+        </div>
+      </a>
+    </ul>
+  </div>
+  {% endfor %}
+  
+  {% else %}
+
+  <div class="card">
+    <img src="" alt="" />
+
+    <div class="card-body">
+
+      수강하는 수업이 없습니다.
+      <h5 class="card-title"></h5>
+      <p class="card-text"></p>
+    </div>
+  </div>
+  {% endif %}
+
+  <img style="width: 20%;" src="{% static 'images/mypage_overwatch.png' %}" alt="">
+  {% if over %}
+  {% for i in over %}
+  <div style="margin-top: 30px; width: 400px; height: 300;">
+
+    <ul style="list-style: none;">
+      <a style="text-decoration: none; color: black;" href="{% url 'video_watching' %}">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/김재원.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.detail}}</p>
+          </div>
+        </div>
+      </a>
+    </ul>
+  </div>
+  {% endfor %}
+  
+  {% else %}
+
+  <div class="card">
+    <img src="" alt="" />
+
+    <div class="card-body">
+
+      수강하는 수업이 없습니다.
+      <h5 class="card-title"></h5>
+      <p class="card-text"></p>
+    </div>
+  </div>
+  {% endif %}

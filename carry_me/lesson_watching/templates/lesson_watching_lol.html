@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <title>팀운보다 문제는 내손!: 캐리미</title>
+    <style>
+        #logo {
+            width: 20%;
+        }
+
+        #header {
+            background-color: #ff9e14;
+        }
+
+        .nav-link {
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+
+        #carousel {
+            margin-left: 150px;
+            margin-top: 50px;
+            width: 80%;
+        }
+
+        .game div ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        .game div ul li {
+            align-items: center;
+        }
+
+        .game div ul li img {
+            width: 50%;
+        }
+
+        .footer {
+            background-color: black;
+        }
+        .card{
+            margin-right: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    {% load static %}
+    <div id="header">
+        <br>
+        <div style="margin-right: 100px; text-align: right;">
+            {% if user.is_active == False%}
+            <a style="color: aliceblue;" href="{% url 'login' %}">로그인</a>
+            {% endif %}
+            {% if user.is_active == True %}
+            <br>
+            <a style="color: aliceblue;" href="">마이페이지</a>
+            <a style="color: aliceblue;" href="{% url 'logout' %}">로그아웃</a>
+            <p>{{nickname}}님 반갑습니다</p>
+            {% endif %}
+        </div>
+        <br>
+    </div>
+
+    <div style="width: 1920px; height: 888px; background: url('/static/images/롤배경.jpg');">
+        <div style="margin-left: 150px;">
+            <form class="form-inline ">
+                <a href="{% url 'home' %}"><img style="width: 80%" id="logo" src="{% static 'images/carry_me_logo_white.png' %}" alt=""></a>
+                <input style="width: 40%;" class="form-control mr-sm-2" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <img src="{% static 'images/' %}" alt="">
+        <img style="position: absolute; left: 15%; right: 20%;  width: 70%;" src="{% static 'images/lol_main.jpg' %}"
+            alt="">
+
+    </div>
+
+    <section style="margin-left: 150px;" class="game">
+        <h2>리그오브 레전드 강사진</h2>
+        <div>
+            <ul style="list-style: none;">
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/mad_life.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's
+                            content.</p>
+                    </div>
+                </div>
+                <a href="{% url 'video_watching'  %}">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'images/faker.png' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the
+                                card's
+                                content.</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/prey.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's
+                            content.</p>
+                    </div>
+                </div>
+            </ul>
+
+        </div>
+    </section>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <img style="width: 80%;" src="{% static 'images/lol_middle.jpg' %}" alt="">
+    </div>
+    <div style="text-align: center; margin-top: 50px;">
+        <img style="width: 80%;" src="{% static 'images/lol_lesson.jpg' %}" alt="">
+    </div>
+    <div style="margin-top: 50px;" class="footer">
+        <div class="container">
+            <div class="row padding_top_50">
+                <div style="margin-top: 30px; margin-bottom: 30px;" class="col text-left">
+                    <img style="width: 30%;" src="{% static 'images/carry_me_logo_white.png' %}">
+                </div>
+                <div style="margin-top: 30px;" class="col text-right">
+                    <a class="float-right" href="" target="_blank">
+                        <img src="http://www.10wonders.com/img/assets/footer/youtube.svg">
+                    </a>
+                    <a class="float-right margin_right_5" href="" target="_blank">
+                        <img src="http://www.10wonders.com/img/assets/footer/facebook.svg">
+                    </a>
+                    <a class="float-right margin_right_5" href="" target="_blank">
+                        <img src="http://www.10wonders.com/img/assets/footer/instagram.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
