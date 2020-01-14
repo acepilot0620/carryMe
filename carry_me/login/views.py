@@ -62,7 +62,7 @@ def info_change(request):
         new_password1 = request.POST.get('new_password1')
         new_password2 = request.POST.get('new_password2')
         new_nickname = request.POST.get("new_nickname")
-        new_email = request.POST.get("new_nickname")
+        new_email = request.POST.get("new_email")
         user = request.user
 
         if check_password(old_password,user.password):
