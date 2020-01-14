@@ -19,7 +19,7 @@
   </script>
 
   <title>팀운보다 문제는 내손!: 캐리미</title>
-  <style>
+  <style> 
     #logo {
       width: 20%;
     }
@@ -85,6 +85,7 @@
       {% if user.is_active == True %}
       <br>
       <a style="color: aliceblue; " href="{% url 'mypage' %}">마이페이지</a>
+      <a style="color: aliceblue; " href="{% url 'info_change' %}">개인정보 수정</a>
       <a style="color: aliceblue;" href="{% url 'logout' %}">로그아웃</a>
       <p>{{nickname}}님 반갑습니다</p>
       {% endif %}

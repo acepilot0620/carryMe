@@ -20,7 +20,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 from main.views import home,about_us, teacher_info
-from login.views import login,signup,logout
+from login.views import login,signup,logout, info_change
 from lesson_watching.views import lesson_page_lol, lesson_page_battleground , lesson_page_overwatch,video_watching
 from QnA.views import uploadQuestion ,showQuestion ,new , showQuestionDetail, createAnswer
 from django.conf import settings
@@ -37,6 +37,7 @@ urlpatterns = [
     path('signup/',signup,name="signup"),
     path('login/',login,name='login'),
     path('logout/',logout,name="logout"),
+    path('info_change/',info_change, name="info_change"),
     path('question/new/',new,name ="question"),
     path('question/create',uploadQuestion,name = "questionCreate"),
     path('question/<int:question_id>',showQuestionDetail,name ='detail'),
